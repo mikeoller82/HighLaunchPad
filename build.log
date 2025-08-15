@@ -1,0 +1,30 @@
+npm warn cli npm v11.4.2 does not support Node.js v20.0.0. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+npm warn Unknown project config "timeout". This will stop working in the next major version of npm.
+
+> highlaunchpad@0.1.0 build
+> OTEL_SDK_DISABLED=true next build
+
+  ▲ Next.js 14.2.5
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · instrumentationHook
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./src/app/dashboard/funnels/[templateId]/page.tsx
+943:30  Error: Parsing error: ':' expected.
+
+./src/components/forms/form-preview.tsx
+431:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/ui/LazyImage.tsx
+127:6  Warning: React Hook useEffect has a missing dependency: 'hasError'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/components/website/EditorWebsiteComponent.tsx
+290:30  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules

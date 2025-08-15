@@ -1,0 +1,31 @@
+
+> highlaunchpad@0.1.0 dev
+> next dev
+
+  ▲ Next.js 15.0.0-rc.0
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+TypeError: fetch failed
+    at Object.fetch (node:internal/deps/undici/undici:11457:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getVersionInfo (/home/mike/HighLaunchPad-dev/node_modules/next/dist/server/dev/hot-reloader-webpack.js:215:21)
+    at async Span.traceAsyncFn (/home/mike/HighLaunchPad-dev/node_modules/next/dist/trace/trace.js:157:20)
+    at async HotReloaderWebpack.start (/home/mike/HighLaunchPad-dev/node_modules/next/dist/server/dev/hot-reloader-webpack.js:607:28)
+    at async startWatcher (/home/mike/HighLaunchPad-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js:155:5)
+    at async setupDevBundler (/home/mike/HighLaunchPad-dev/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js:769:20)
+    at async Span.traceAsyncFn (/home/mike/HighLaunchPad-dev/node_modules/next/dist/trace/trace.js:157:20)
+    at async initialize (/home/mike/HighLaunchPad-dev/node_modules/next/dist/server/lib/router-server.js:79:30)
+    at async Server.<anonymous> (/home/mike/HighLaunchPad-dev/node_modules/next/dist/server/lib/start-server.js:250:36) {
+  cause: Error [ERR_SOCKET_CONNECTION_TIMEOUT]: Socket connection timeout
+      at new NodeError (node:internal/errors:399:5)
+      at internalConnectMultiple (node:net:1098:20)
+      at Timeout.internalConnectMultipleTimeout (node:net:1637:3)
+      at listOnTimeout (node:internal/timers:575:11)
+      at process.processTimers (node:internal/timers:514:7) {
+    code: 'ERR_SOCKET_CONNECTION_TIMEOUT'
+  }
+}
+ ✓ Ready in 7s
+[?25h

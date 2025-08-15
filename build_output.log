@@ -1,0 +1,60 @@
+npm warn cli npm v11.4.2 does not support Node.js v20.0.0. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+npm warn Unknown project config "timeout". This will stop working in the next major version of npm.
+
+> highlaunchpad@0.1.0 build
+> OTEL_SDK_DISABLED=true next build
+
+  ▲ Next.js 14.2.5
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · instrumentationHook
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./src/app/dashboard/funnels/[templateId]/page.tsx
+Error: 
+  [31mx[0m Expression expected
+     ,-[[36;1;4m/home/mike/HighLaunchPad-dev/src/app/dashboard/funnels/[templateId]/page.tsx[0m:601:1]
+ [2m601[0m |   );
+ [2m602[0m | 
+ [2m603[0m |   return (
+ [2m604[0m |     <>
+     : [31;1m     ^[0m
+ [2m605[0m |       <div className="grid grid-cols-1 lg:grid-cols-4 h-full">
+ [2m606[0m |         {/* Sidebar */}
+ [2m607[0m |         <div className="lg:col-span-1 bg-card border-r overflow-y-auto">
+     `----
+
+  [31mx[0m Unexpected token. Did you mean `{'>'}` or `&gt;`?
+     ,-[[36;1;4m/home/mike/HighLaunchPad-dev/src/app/dashboard/funnels/[templateId]/page.tsx[0m:715:1]
+ [2m715[0m |                         step={1}
+ [2m716[0m |                         value={[buttonStyles.borderRadius]}
+ [2m717[0m |                         onValueChange={(value) => handleButtonStylesChange('borderRadius', value[0])}
+ [2m718[0m |                     />
+     : [31;1m                     ^[0m
+ [2m719[0m |                 </div>
+ [2m720[0m |                 <div className="space-y-2">
+ [2m721[0m |                     <Label htmlFor="buttonShadow">Shadow</Label>
+     `----
+
+  [31mx[0m Expected corresponding JSX closing tag for <TabsContent>
+     ,-[[36;1;4m/home/mike/HighLaunchPad-dev/src/app/dashboard/funnels/[templateId]/page.tsx[0m:716:1]
+ [2m716[0m |                         value={[buttonStyles.borderRadius]}
+ [2m717[0m |                         onValueChange={(value) => handleButtonStylesChange('borderRadius', value[0])}
+ [2m718[0m |                     />
+ [2m719[0m |                 </div>
+     : [31;1m                ^^^^^^[0m
+ [2m720[0m |                 <div className="space-y-2">
+ [2m721[0m |                     <Label htmlFor="buttonShadow">Shadow</Label>
+ [2m722[0m |                     <Select
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/dashboard/funnels/[templateId]/page.tsx
+
+
+> Build failed because of webpack errors
