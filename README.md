@@ -98,7 +98,7 @@ Book a personalized demo to see how HighLaunchPad can transform your business:
 
 ## 🤝 **Contributing & Development**
 
-While HighLaunchPad is a proprietary platform, we welcome contributions from talented developers who want to help shape the future of creator tools.
+HighLaunchPad is a opensource platform, we welcome contributions from talented developers who want to help shape the future of creator tools.
 
 ### 👨‍💻 **For Developers**
 Interested in contributing to HighLaunchPad? We're always looking for passionate developers to join our mission.
@@ -123,16 +123,6 @@ Interested in contributing to HighLaunchPad? We're always looking for passionate
 
 ---
 
-## 📈 **Success Stories**
-
-*"HighLaunchPad transformed how I manage my affiliate campaigns. The AI content generation alone saves me 10+ hours per week."*
-**- Sarah K., Content Creator**
-
-*"Finally, a platform built for creators by creators. The funnel builder is incredibly intuitive and the automation features are game-changing."*
-**- Marcus T., Digital Entrepreneur**
-
----
-
 ## 🔗 **Connect With Us**
 
 - 🌐 **Website**: [highlaunchpad.com](https://highlaunchpad.com)
@@ -146,7 +136,7 @@ Interested in contributing to HighLaunchPad? We're always looking for passionate
 
 © 2025 HighLaunchPad. All rights reserved.
 
-This repository contains public documentation and community resources. The HighLaunchPad platform and its core technologies are proprietary software owned by HighLaunchPad.
+This repository contains public documentation and community resources. The HighLaunchPad platform and its core technologies are opensource software owned by HighLaunchPad.
 
 ---
 
