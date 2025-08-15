@@ -1,0 +1,174 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow users to read and write their own workspace data
+    match /workspaces/{workspaceId} {
+      allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      
+      // Allow users to read and write their own social profiles
+      match /profiles/{profileId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      // Allow users to read and write their own social posts
+      match /posts/{postId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      // Allow users to read and write their own conversations
+      match /conversations/{conversationId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+        
+        // Allow access to messages within conversations
+        match /messages/{messageId} {
+          allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+        }
+      }
+      
+      // Allow users to read and write their own contacts
+      match /contacts/{contactId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      // Allow users to read and write their own AI agent collections
+      match /agentChats/{chatId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /agentActivities/{activityId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /taskExecutions/{executionId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /agentConfigs/{configId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /blog_drafts/{draftId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /scheduledPosts/{postId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /scheduled_posts/{postId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /lead_scores/{scoreId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /lead_qualifications/{qualificationId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /lead_assignments/{assignmentId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /followups/{followupId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /email_sequences/{sequenceId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /nurturing_actions/{actionId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      match /crm_updates/{updateId} {
+        allow read, write, create, delete: if request.auth != null && workspaceId == request.auth.uid;
+      }
+      
+      // Allow users to read and write their own content collections (excluding specific collections handled above)
+      match /{collection}/{documentId} {
+        allow read, write, create, delete: if request.auth != null && 
+          collection != 'profiles' && 
+          collection != 'posts' &&
+          collection != 'conversations' &&
+          collection != 'contacts' &&
+          collection != 'agentChats' &&
+          collection != 'agentActivities' &&
+          collection != 'taskExecutions' &&
+          collection != 'agentConfigs' &&
+          collection != 'blog_drafts' &&
+          collection != 'scheduledPosts' &&
+          collection != 'scheduled_posts' &&
+          collection != 'lead_scores' &&
+          collection != 'lead_qualifications' &&
+          collection != 'lead_assignments' &&
+          collection != 'followups' &&
+          collection != 'email_sequences' &&
+          collection != 'nurturing_actions' &&
+          collection != 'crm_updates' &&
+          workspaceId == request.auth.uid;
+      }
+    }
+    
+    // Allow users to read and write their own user document
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Allow OAuth state management for social connections
+    match /oauth_states/{stateId} {
+      allow read, write, create, delete: if request.auth != null;
+    }
+    
+    // Stripe customer data and subscriptions (firestore-stripe-payments extension)
+    match /customers/{uid} {
+      allow read: if request.auth.uid == uid;
+
+      match /checkout_sessions/{id} {
+        allow read, write: if request.auth.uid == uid;
+      }
+      match /subscriptions/{id} {
+        allow read: if request.auth.uid == uid;
+      }
+      match /payments/{id} {
+        allow read: if request.auth.uid == uid;
+      }
+    }
+
+    match /products/{id} {
+      allow read: if true;
+
+      match /prices/{id} {
+        allow read: if true;
+      }
+
+      match /tax_rates/{id} {
+        allow read: if true;
+      }
+    }
+    
+    // Allow users to read and write their own leads
+    match /leads/{leadId} {
+      allow read, write, create, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    }
+    
+    // Allow users to read and write their own courses
+    match /courses/{courseId} {
+      allow read, write: if request.auth != null && resource.data.instructorId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.instructorId == request.auth.uid;
+      
+      // Allow access to modules within user's courses
+      match /modules/{moduleId} {
+        allow read, write: if request.auth != null && get(/databases/$(database)/documents/courses/$(courseId)).data.instructorId == request.auth.uid;
+        
+        // Allow access to lessons within user's modules
+        match /lessons/{lessonId} {
+          allow read, write: if request.auth != null && get(/databases/$(database)/documents/courses/$(courseId)).data.instructorId == request.auth.uid;
+        }
+      }
+    }
+  }
+}
