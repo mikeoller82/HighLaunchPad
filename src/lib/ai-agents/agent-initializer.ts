@@ -1,6 +1,8 @@
 import { AgentRegistry } from './agent-registry';
 import { LeadManagementAgent } from './lead-management-agent';
-// Removed CustomerInteractionAgent import to prevent build issues
+import { ContentCreationAgent } from './content-creation-agent';
+import { EnhancedSocialMediaAgent } from './enhanced-social-media-agent';
+import { AutomationAgent } from './automation-agent';
 import { SalesPipelineAgent } from './sales-pipeline-agent';
 import { JourneyOrchestrationAgent } from './journey-orchestration-agent';
 import { DataIntegrationAgent } from './data-integration-agent';
@@ -17,165 +19,6 @@ import {
 } from './types';
 import { Firestore } from 'firebase/firestore';
 
-// Content Creation Agent (enhanced implementation)
-class ContentCreationAgent extends BaseAgent {
-  async processEvents(events: any[]): Promise<void> {
-    console.log('Content agent processing events:', events.length);
-    for (const event of events) {
-      if (event.type === EventType.CONTENT_REQUEST) {
-        this.context.conversationHistory.push({
-          type: 'content_generation',
-          timestamp: event.timestamp,
-          data: event.data
-        });
-      }
-    }
-  }
-
-  async makeDecisions(context: any): Promise<any[]> {
-    const actions: any[] = [];
-    for (const event of context.events) {
-      if (event.type === EventType.CONTENT_REQUEST) {
-        actions.push({
-          id: `create_content_${event.id}_${Date.now()}`,
-          type: ActionType.CREATE_CONTENT,
-          agentId: this.id,
-          timestamp: new Date(),
-          parameters: {
-            contentType: event.data.contentType || 'blog',
-            topic: event.data.topic || 'general',
-            targetAudience: event.data.targetAudience || 'general'
-          },
-          priority: 6
-        });
-      }
-    }
-    return actions;
-  }
-
-  async executeActions(actions: any[]): Promise<any[]> {
-    return actions.map(action => ({
-      actionId: action.id,
-      success: true,
-      result: {
-        contentId: `content_${Date.now()}`,
-        contentType: action.parameters.contentType,
-        status: 'generated'
-      },
-      timestamp: new Date()
-    }));
-  }
-
-  async processFeedback(feedback: any[]): Promise<void> {
-    console.log('Content agent processing feedback:', feedback.length);
-  }
-}
-
-// Social Media Agent (enhanced implementation)
-class SocialMediaAgent extends BaseAgent {
-  async processEvents(events: any[]): Promise<void> {
-    console.log('Social agent processing events:', events.length);
-    for (const event of events) {
-      if (event.type === EventType.SOCIAL_POST_REQUEST) {
-        this.context.conversationHistory.push({
-          type: 'social_scheduling',
-          timestamp: event.timestamp,
-          data: event.data
-        });
-      }
-    }
-  }
-
-  async makeDecisions(context: any): Promise<any[]> {
-    const actions: any[] = [];
-    for (const event of context.events) {
-      if (event.type === EventType.SOCIAL_POST_REQUEST) {
-        actions.push({
-          id: `schedule_post_${event.id}_${Date.now()}`,
-          type: ActionType.SCHEDULE_POST,
-          agentId: this.id,
-          timestamp: new Date(),
-          parameters: {
-            platforms: event.data.platforms || ['linkedin', 'twitter'],
-            content: event.data.content || 'Generated social content',
-            scheduledFor: event.data.scheduledFor || new Date(Date.now() + 60 * 60 * 1000)
-          },
-          priority: 5
-        });
-      }
-    }
-    return actions;
-  }
-
-  async executeActions(actions: any[]): Promise<any[]> {
-    return actions.map(action => ({
-      actionId: action.id,
-      success: true,
-      result: {
-        postId: `post_${Date.now()}`,
-        platforms: action.parameters.platforms,
-        status: 'scheduled'
-      },
-      timestamp: new Date()
-    }));
-  }
-
-  async processFeedback(feedback: any[]): Promise<void> {
-    console.log('Social agent processing feedback:', feedback.length);
-  }
-}
-
-// Automation Agent (enhanced implementation)
-class AutomationAgent extends BaseAgent {
-  async processEvents(events: any[]): Promise<void> {
-    console.log('Automation agent processing events:', events.length);
-    for (const event of events) {
-      if (event.type === EventType.WORKFLOW_TRIGGER) {
-        this.context.conversationHistory.push({
-          type: 'automation_trigger',
-          timestamp: event.timestamp,
-          data: event.data
-        });
-      }
-    }
-  }
-
-  async makeDecisions(context: any): Promise<any[]> {
-    const actions: any[] = [];
-    for (const event of context.events) {
-      if (event.type === EventType.WORKFLOW_TRIGGER) {
-        actions.push({
-          id: `execute_automation_${event.id}_${Date.now()}`,
-          type: ActionType.EXECUTE_WORKFLOW,
-          agentId: this.id,
-          timestamp: new Date(),
-          parameters: {
-            workflowType: event.data.workflowType || 'general',
-            triggerData: event.data
-          },
-          priority: 7
-        });
-      }
-    }
-    return actions;
-  }
-
-  async executeActions(actions: any[]): Promise<any[]> {
-    return actions.map(action => ({
-      actionId: action.id,
-      success: true,
-      result: {
-        workflowId: `workflow_${Date.now()}`,
-        status: 'executed'
-      },
-      timestamp: new Date()
-    }));
-  }
-
-  async processFeedback(feedback: any[]): Promise<void> {
-    console.log('Automation agent processing feedback:', feedback.length);
-  }
-}
 
 export class AgentInitializer {
   private static instance: AgentInitializer;
@@ -316,7 +159,7 @@ export class AgentInitializer {
       }
     };
 
-    const agent = new ContentCreationAgent(config);
+    const agent = new ContentCreationAgent();
     await registry.registerAgent(agent);
     
     // Start if enabled
@@ -359,7 +202,7 @@ export class AgentInitializer {
       }
     };
 
-    const agent = new SocialMediaAgent(config);
+    const agent = new EnhancedSocialMediaAgent();
     await registry.registerAgent(agent);
     
     // Start if enabled
@@ -402,7 +245,7 @@ export class AgentInitializer {
       }
     };
 
-    const agent = new AutomationAgent(config);
+    const agent = new AutomationAgent();
     await registry.registerAgent(agent);
     
     // Start if enabled
@@ -447,7 +290,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new SalesPipelineAgent(config);
+    const agent = new SalesPipelineAgent();
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -485,7 +328,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new JourneyOrchestrationAgent(config);
+    const agent = new JourneyOrchestrationAgent();
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -523,7 +366,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new DataIntegrationAgent(config);
+    const agent = new DataIntegrationAgent();
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -561,7 +404,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new WorkflowManagementAgent(config);
+    const agent = new WorkflowManagementAgent();
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -599,7 +442,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new IntelligenceReportingAgent(config);
+    const agent = new IntelligenceReportingAgent();
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -637,7 +480,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new ConversationalAIAgent(config);
+    const agent = new ConversationalAIAgent();
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {

@@ -60,3 +60,16 @@ export { ContentCreationAgent, contentCreationAgent } from './content-creation-a
 
 // Enhanced Social Media Agent
 export { EnhancedSocialMediaAgent, enhancedSocialMediaAgent } from './enhanced-social-media-agent';
+
+// All Agent Implementations
+export { AutomationAgent, createAutomationAgent } from './automation-agent';
+export { ConversationalAIAgent, createConversationalAIAgent } from './conversational-ai-agent';
+export { DataIntegrationAgent, createDataIntegrationAgent } from './data-integration-agent';
+export { IntelligenceReportingAgent, createIntelligenceReportingAgent } from './intelligence-reporting-agent';
+export { JourneyOrchestrationAgent, createJourneyOrchestrationAgent } from './journey-orchestration-agent';
+export { SalesPipelineAgent, createSalesPipelineAgent } from './sales-pipeline-agent';
+export { WorkflowManagementAgent, createWorkflowManagementAgent } from './workflow-management-agent';
+
+// Unified Agent Service
+export { UnifiedAgentService } from './unified-agent-service';
+export { TaskExecutionService } from './task-execution-service';

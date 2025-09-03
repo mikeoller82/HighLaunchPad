@@ -126,17 +126,22 @@ We welcome developers, designers, marketers, and testers who believe in empoweri
 
 ## 📚 Documentation
 
+<<<<<<< HEAD
 This repository contains:
 - Full source code
 - Public product documentation
 - API references
 - Developer contribution guidelines
 - Tutorials & examples
+=======
+HighLaunchPad is a opensource platform, we welcome contributions from talented developers who want to help shape the future of creator tools.
+>>>>>>> 04c17045d1d8dc9d301c58f104ba9a6b2170dbc4
 
 Explore the full platform: **[highlaunchpad.com](https://highlaunchpad.com)**
 
 ---
 
+<<<<<<< HEAD
 ## 🗣️ Testimonials
 
 > *"HighLaunchPad transformed how I run affiliate campaigns. The AI tools alone save me 10+ hours weekly."*  
@@ -148,6 +153,9 @@ Explore the full platform: **[highlaunchpad.com](https://highlaunchpad.com)**
 ---
 
 ## 🔗 Connect With Us
+=======
+## 🔗 **Connect With Us**
+>>>>>>> 04c17045d1d8dc9d301c58f104ba9a6b2170dbc4
 
 - 🌐 **Website**: [highlaunchpad.com](https://highlaunchpad.com)  
 - 📧 **Email**: [admin@highlaunchpad.com](mailto:admin@highlaunchpad.com)  
@@ -158,8 +166,14 @@ Explore the full platform: **[highlaunchpad.com](https://highlaunchpad.com)**
 
 ## 📄 License
 
+<<<<<<< HEAD
 © 2025 HighLaunchPad.  
 Licensed under the **MIT License** — you are free to use, modify, and distribute this software, provided proper attribution is given.
+=======
+© 2025 HighLaunchPad. All rights reserved.
+
+This repository contains public documentation and community resources. The HighLaunchPad platform and its core technologies are opensource software owned by HighLaunchPad.
+>>>>>>> 04c17045d1d8dc9d301c58f104ba9a6b2170dbc4
 
 ---
 
@@ -171,7 +185,11 @@ Licensed under the **MIT License** — you are free to use, modify, and distribu
 
 </div>
 
+<<<<<<< HEAD
 <!--
 SEO KEYWORDS:
 HighLaunchPad, AI CRM, AI funnel builder, creator economy CRM, affiliate marketing automation, email marketing automation, open source CRM for creators, AI-powered sales funnels, marketing automation for content creators, creator tools, funnel builder for affiliate marketers, AI email automation, social media campaign automation, digital entrepreneur CRM, all-in-one creator marketing platform, early access CRM, public testing CRM
 -->
+=======
+</div>
+>>>>>>> 04c17045d1d8dc9d301c58f104ba9a6b2170dbc4
