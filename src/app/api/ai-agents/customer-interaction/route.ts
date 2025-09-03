@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { TaskExecutionService } from '@/lib/ai-agents/task-execution-service';
+import { AdminTaskExecutionService } from '@/lib/ai-agents/admin-task-execution-service';
 import { getFirebaseAuth, getAdminDb } from '@/lib/firebase-admin';
 import { UnifiedAgentService } from '@/lib/ai-agents/unified-agent-service';
 
@@ -30,9 +30,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Task ID is required' }, { status: 400 });
     }
 
-    // Use TaskExecutionService for execution
-    const taskService = TaskExecutionService.getInstance();
-    const result = await taskService.executeTask(db, userId, taskId, 'customer_interaction', undefined, parameters);
+    // Use AdminTaskExecutionService for execution
+    const taskService = AdminTaskExecutionService.getInstance();
+    const result = await taskService.executeTask(db, userId, taskId, 'customer_interaction', parameters, undefined);
 
     return NextResponse.json({
       success: true,

@@ -160,7 +160,7 @@ export class AgentInitializer {
       }
     };
 
-    const agent = new ContentCreationAgent();
+    const agent = new ContentCreationAgent(config);
     await registry.registerAgent(agent);
     
     // Start if enabled
@@ -203,7 +203,7 @@ export class AgentInitializer {
       }
     };
 
-    const agent = new EnhancedSocialMediaAgent();
+    const agent = new EnhancedSocialMediaAgent(config);
     await registry.registerAgent(agent);
     
     // Start if enabled
@@ -323,7 +323,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new SalesPipelineAgent();
+    const agent = new SalesPipelineAgent(config);
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -361,7 +361,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new JourneyOrchestrationAgent();
+    const agent = new JourneyOrchestrationAgent(config);
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -399,7 +399,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new DataIntegrationAgent();
+    const agent = new DataIntegrationAgent(config);
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -437,7 +437,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new WorkflowManagementAgent();
+    const agent = new WorkflowManagementAgent(config);
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -475,7 +475,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new IntelligenceReportingAgent();
+    const agent = new IntelligenceReportingAgent(config);
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {
@@ -513,7 +513,7 @@ export class AgentInitializer {
       configuration: { userId, workspaceId: userId }
     };
 
-    const agent = new ConversationalAIAgent();
+    const agent = new ConversationalAIAgent(config);
     await registry.registerAgent(agent);
     
     if (registry.isActive(agentId)) {

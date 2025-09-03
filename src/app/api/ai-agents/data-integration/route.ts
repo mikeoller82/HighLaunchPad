@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { TaskExecutionService } from '@/lib/ai-agents/task-execution-service';
+import { AdminTaskExecutionService } from '@/lib/ai-agents/admin-task-execution-service';
 import { getFirebaseAuth, getAdminDb } from '@/lib/firebase-admin';
 import { UnifiedAgentService } from '@/lib/ai-agents/unified-agent-service';
 
@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Use TaskExecutionService for execution
-    const taskService = TaskExecutionService.getInstance();
-    const result = await taskService.executeTask(db, userId, taskId, 'data_integration', undefined, parameters);
+    const taskService = AdminTaskExecutionService.getInstance();
+    const result = await taskService.executeTask(db, userId, taskId, 'data_integration', parameters, undefined);
 
     return NextResponse.json({
       success: true,

@@ -142,6 +142,13 @@ export class UnifiedAgentService {
   }
 
   /**
+   * Get agent information
+   */
+  public getAgentInfo(agentId: string) {
+    return this.registry.getAgentInfo(agentId);
+  }
+
+  /**
    * Get all active agents
    */
   public getActiveAgents(): Record<string, boolean> {

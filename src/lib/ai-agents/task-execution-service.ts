@@ -24,6 +24,7 @@ export interface TaskExecution {
   result?: any;
   error?: string;
   progress?: number;
+  executionTime?: number;
 }
 
 export class TaskExecutionService {
@@ -40,6 +41,7 @@ export class TaskExecutionService {
     }
     return TaskExecutionService.instance;
   }
+
 
   // Execute a specific task using real AI
   public async executeTask(
