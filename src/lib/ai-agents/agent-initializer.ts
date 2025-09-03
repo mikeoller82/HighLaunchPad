@@ -3,6 +3,7 @@ import { LeadManagementAgent } from './lead-management-agent';
 import { ContentCreationAgent } from './content-creation-agent';
 import { EnhancedSocialMediaAgent } from './enhanced-social-media-agent';
 import { AutomationAgent } from './automation-agent';
+import { CustomerInteractionAgent } from './customer-interaction-agent';
 import { SalesPipelineAgent } from './sales-pipeline-agent';
 import { JourneyOrchestrationAgent } from './journey-orchestration-agent';
 import { DataIntegrationAgent } from './data-integration-agent';
@@ -256,9 +257,41 @@ export class AgentInitializer {
   }
 
   private async initializeCustomerInteractionAgent(registry: AgentRegistry, userId: string): Promise<void> {
-    // CustomerInteractionAgent temporarily disabled to prevent build issues
-    console.log('Customer Interaction Agent initialization skipped');
-    return;
+    const agentId = 'customer_interaction';
+    
+    if (registry.getAgent(agentId)) {
+      console.log('Customer Interaction Agent already registered');
+      return;
+    }
+
+    const config: AgentConfiguration = {
+      id: agentId,
+      type: AgentType.CUSTOMER_INTERACTION,
+      name: 'Customer Interaction Agent',
+      description: 'Handles customer communications and support',
+      capabilities: [
+        {
+          name: 'customer_support',
+          description: 'Handle customer inquiries and support requests',
+          requiredPermissions: ['read_conversations', 'send_messages'],
+          supportedEventTypes: [EventType.CUSTOMER_INTERACTION],
+          supportedActionTypes: [ActionType.SEND_MESSAGE, ActionType.ESCALATE]
+        }
+      ],
+      enabled: true,
+      priority: 8,
+      maxConcurrentActions: 15,
+      learningEnabled: true,
+      configuration: { userId, workspaceId: userId }
+    };
+
+    const agent = new CustomerInteractionAgent();
+    await registry.registerAgent(agent);
+    
+    if (registry.isActive(agentId)) {
+      await agent.start();
+      console.log('✅ Customer Interaction Agent started');
+    }
   }
 
   private async initializeSalesPipelineAgent(registry: AgentRegistry, userId: string): Promise<void> {

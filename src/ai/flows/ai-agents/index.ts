@@ -4,6 +4,7 @@
 export { leadScoringFlow } from './lead-scoring';
 export { generateContent } from './content-creation';
 export { generateSocialMedia } from './social-media';
+export { automationFlow } from './automation';
 export { customerInteractionFlow } from './customer-interaction';
 export { salesPipelineFlow } from './sales-pipeline';
 export { intelligenceReportingFlow } from './intelligence-reporting';
@@ -19,6 +20,7 @@ export { dataIntegrationFlow } from './data-integration';
 export * from './lead-scoring';
 export * from './content-creation';
 export * from './social-media';
+export * from './automation';
 export * from './customer-interaction';
 export * from './sales-pipeline';
 export * from './intelligence-reporting';

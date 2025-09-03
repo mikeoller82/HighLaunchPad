@@ -64,6 +64,7 @@ export { EnhancedSocialMediaAgent, enhancedSocialMediaAgent } from './enhanced-s
 // All Agent Implementations
 export { AutomationAgent, createAutomationAgent } from './automation-agent';
 export { ConversationalAIAgent, createConversationalAIAgent } from './conversational-ai-agent';
+export { CustomerInteractionAgent, createCustomerInteractionAgent } from './customer-interaction-agent';
 export { DataIntegrationAgent, createDataIntegrationAgent } from './data-integration-agent';
 export { IntelligenceReportingAgent, createIntelligenceReportingAgent } from './intelligence-reporting-agent';
 export { JourneyOrchestrationAgent, createJourneyOrchestrationAgent } from './journey-orchestration-agent';
